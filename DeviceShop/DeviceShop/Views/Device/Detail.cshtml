@@ -1,0 +1,38 @@
+﻿@model Device
+
+@*
+     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container"
+
+    <h1 class="my-4">Page Heading
+        <small>Secondary Text</small>
+    </h1>
+
+    <div class="row">
+
+        <div class="col-md-8"
+          <img  src="@Html.DisplayFor(modelItem => Model.Image)" style="width:500px; height:500px" />
+        </div>
+
+    <div class="col-md-4"
+    <h3 class="my-3">@Model.Title</h3>
+    <h3 class="my-3">Description</h3>
+    <ul>
+        <li>@Model.Description</li>
+        <li>@Model.Rating</li>
+        <li>@Model.Price</li>
+        <li>@Model.Title</li>
+        <li></li>
+    </ul>
+    </div>
+
+
+ 
+
+    </div>
+    </div>
+
