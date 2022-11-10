@@ -4,6 +4,7 @@ using DeviceShop.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeviceShop.Core.Migrations
 {
     [DbContext(typeof(DeviceShopContext))]
-    partial class DeviceShopContextModelSnapshot : ModelSnapshot
+    [Migration("20221110125338_cart")]
+    partial class cart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,33 +97,33 @@ namespace DeviceShop.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b8e87175-dfb4-470e-9e52-18ec458af3fd",
+                            Id = "2d062992-dc0d-45ed-98bf-558f468bf2d1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f17e00d0-911a-4590-9625-9ff8ee5834fe",
+                            ConcurrencyStamp = "736980fd-af11-4688-81a1-d6218277c20a",
                             Email = "admin@deviceshop.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@DEVICESHOP.COM",
                             NormalizedUserName = "ADMIN@DEVICESHOP.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKQ6ib02zQ4q0ldIcAFc7Np7m7DxRko+uSszJGuIT35OkgrWQUGbNIzFMrBpMNhi0A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOH+TvorRq62Jkx4b3uTDoJLyK2ehVkfNzUDO1qdqnUyV007YWGi8xA5LZgwnFcd+g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3e1f5326-8387-4b55-a02b-e64943a33caf",
+                            SecurityStamp = "77288c40-cce3-4413-9f62-e7f14e81988d",
                             TwoFactorEnabled = false,
                             UserName = "admin@deviceshop.com"
                         },
                         new
                         {
-                            Id = "12f24c40-2a36-4840-ba8d-0c397bcf88a2",
+                            Id = "a916da9c-bd44-4293-aef6-4352b16992e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6f35502a-fd24-4841-820b-ccf981cb8f35",
+                            ConcurrencyStamp = "97ce6aba-c2ec-420a-9a7a-b28343d42612",
                             Email = "user@deviceshop.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@DEVICESHOP.COM",
                             NormalizedUserName = "USER@DEVICESHOP.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMN1VeRJ5jgM/ulAmlXuyaKSYV8eMGnEultwznds+qk6bZnwzV00B5PmIFKVU1MzDQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFOdAjk6DI3F9uLLc/qU+Rmc04Cthdsh2LB6tiGRoTji9kebmDL+lOF6R1q7qbj3Ng==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7d1c0493-ea72-46a7-816e-59fa1047d8c5",
+                            SecurityStamp = "cd2ae069-a11c-4ea7-a585-8eed6e3eed5c",
                             TwoFactorEnabled = false,
                             UserName = "user@deviceshop.com"
                         });
@@ -295,15 +297,15 @@ namespace DeviceShop.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e4b652a0-0973-499b-a0d9-ca251151c98a",
-                            ConcurrencyStamp = "08491c93-7389-47e9-a6fd-718bdadab7b3",
+                            Id = "4882cbf5-36da-4f3e-8d02-869035e00fd3",
+                            ConcurrencyStamp = "4f450341-ca76-4454-8d55-338ceeadbc61",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "4a421f08-e362-4abe-aa94-6d076cb59ee3",
-                            ConcurrencyStamp = "f98be3bc-ed59-4cd6-b2b1-b505fc7db336",
+                            Id = "8b67d02c-2a6c-4b1d-b827-f1dbd34362ee",
+                            ConcurrencyStamp = "2493a2cf-6df8-4c4b-85a0-5986de1a9693",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -400,18 +402,18 @@ namespace DeviceShop.Core.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "b8e87175-dfb4-470e-9e52-18ec458af3fd",
-                            RoleId = "e4b652a0-0973-499b-a0d9-ca251151c98a"
+                            UserId = "2d062992-dc0d-45ed-98bf-558f468bf2d1",
+                            RoleId = "4882cbf5-36da-4f3e-8d02-869035e00fd3"
                         },
                         new
                         {
-                            UserId = "b8e87175-dfb4-470e-9e52-18ec458af3fd",
-                            RoleId = "4a421f08-e362-4abe-aa94-6d076cb59ee3"
+                            UserId = "2d062992-dc0d-45ed-98bf-558f468bf2d1",
+                            RoleId = "8b67d02c-2a6c-4b1d-b827-f1dbd34362ee"
                         },
                         new
                         {
-                            UserId = "12f24c40-2a36-4840-ba8d-0c397bcf88a2",
-                            RoleId = "4a421f08-e362-4abe-aa94-6d076cb59ee3"
+                            UserId = "a916da9c-bd44-4293-aef6-4352b16992e4",
+                            RoleId = "8b67d02c-2a6c-4b1d-b827-f1dbd34362ee"
                         });
                 });
 

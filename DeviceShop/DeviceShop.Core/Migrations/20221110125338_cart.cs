@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DeviceShop.Core.Migrations
 {
-    public partial class image : Migration
+    public partial class cart : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,6 +48,19 @@ namespace DeviceShop.Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -196,6 +209,26 @@ namespace DeviceShop.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CategoriesModel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ModelName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategoriesModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CategoriesModel_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Devices",
                 columns: table => new
                 {
@@ -205,6 +238,7 @@ namespace DeviceShop.Core.Migrations
                     Price = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     Rating = table.Column<double>(type: "float", nullable: false),
                     ColourId = table.Column<int>(type: "int", nullable: true),
                     CompanyId = table.Column<int>(type: "int", nullable: true),
@@ -213,6 +247,12 @@ namespace DeviceShop.Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Devices", x => x.DeviceId);
+                    table.ForeignKey(
+                        name: "FK_Devices_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Devices_Colours_ColourId",
                         column: x => x.ColourId,
@@ -235,8 +275,8 @@ namespace DeviceShop.Core.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "8a8fb06f-c047-4d66-b589-3804b284c125", "d9b9dbe0-a7f6-4437-b04f-a7f623f0b5e6", "Admin", "ADMIN" },
-                    { "abe95b6f-bb7d-4114-84ed-37ebe437e187", "908f45a3-d386-47be-88d3-726691f6b51b", "User", "USER" }
+                    { "4882cbf5-36da-4f3e-8d02-869035e00fd3", "4f450341-ca76-4454-8d55-338ceeadbc61", "Admin", "ADMIN" },
+                    { "8b67d02c-2a6c-4b1d-b827-f1dbd34362ee", "2493a2cf-6df8-4c4b-85a0-5986de1a9693", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -244,24 +284,24 @@ namespace DeviceShop.Core.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "2b36f2e1-c721-4302-82d7-c68baeedb33a", 0, "d6b9f148-b72c-4371-b750-7fa5920f28b4", "admin@deviceshop.com", true, null, null, false, null, "ADMIN@DEVICESHOP.COM", "ADMIN@DEVICESHOP.COM", "AQAAAAEAACcQAAAAEMWKhsu3eFNqOvsG6k+ZEc8jCZdxJwkcrxKPArNt3kbFRNhuWzOol/75WA4N8Z1CeQ==", null, false, "b9e5279f-dd7b-4c0a-bf55-f555cbbd824d", false, "admin@deviceshop.com" },
-                    { "fd6eef0c-c88e-429e-9bdd-c2fde2e22d7c", 0, "8d36c366-4b10-4bf0-8ab6-447dc915dc66", "user@deviceshop.com", true, null, null, false, null, "USER@DEVICESHOP.COM", "USER@DEVICESHOP.COM", "AQAAAAEAACcQAAAAEL7r+Yci/T4Bs14+Pvn87y88ht0KsIagXpPJ7ca/M1+lfYEogV6vSaCNG+IGR2rBzQ==", null, false, "16ca6fcb-2c18-49e4-a8df-cc2227363975", false, "user@deviceshop.com" }
+                    { "2d062992-dc0d-45ed-98bf-558f468bf2d1", 0, "736980fd-af11-4688-81a1-d6218277c20a", "admin@deviceshop.com", true, null, null, false, null, "ADMIN@DEVICESHOP.COM", "ADMIN@DEVICESHOP.COM", "AQAAAAEAACcQAAAAEOH+TvorRq62Jkx4b3uTDoJLyK2ehVkfNzUDO1qdqnUyV007YWGi8xA5LZgwnFcd+g==", null, false, "77288c40-cce3-4413-9f62-e7f14e81988d", false, "admin@deviceshop.com" },
+                    { "a916da9c-bd44-4293-aef6-4352b16992e4", 0, "97ce6aba-c2ec-420a-9a7a-b28343d42612", "user@deviceshop.com", true, null, null, false, null, "USER@DEVICESHOP.COM", "USER@DEVICESHOP.COM", "AQAAAAEAACcQAAAAEFOdAjk6DI3F9uLLc/qU+Rmc04Cthdsh2LB6tiGRoTji9kebmDL+lOF6R1q7qbj3Ng==", null, false, "cd2ae069-a11c-4ea7-a585-8eed6e3eed5c", false, "user@deviceshop.com" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "8a8fb06f-c047-4d66-b589-3804b284c125", "2b36f2e1-c721-4302-82d7-c68baeedb33a" });
+                values: new object[] { "4882cbf5-36da-4f3e-8d02-869035e00fd3", "2d062992-dc0d-45ed-98bf-558f468bf2d1" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "abe95b6f-bb7d-4114-84ed-37ebe437e187", "2b36f2e1-c721-4302-82d7-c68baeedb33a" });
+                values: new object[] { "8b67d02c-2a6c-4b1d-b827-f1dbd34362ee", "2d062992-dc0d-45ed-98bf-558f468bf2d1" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "abe95b6f-bb7d-4114-84ed-37ebe437e187", "fd6eef0c-c88e-429e-9bdd-c2fde2e22d7c" });
+                values: new object[] { "8b67d02c-2a6c-4b1d-b827-f1dbd34362ee", "a916da9c-bd44-4293-aef6-4352b16992e4" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -303,6 +343,16 @@ namespace DeviceShop.Core.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CategoriesModel_CategoryId",
+                table: "CategoriesModel",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Devices_CategoryId",
+                table: "Devices",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Devices_ColourId",
                 table: "Devices",
                 column: "ColourId");
@@ -336,6 +386,9 @@ namespace DeviceShop.Core.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "CategoriesModel");
+
+            migrationBuilder.DropTable(
                 name: "Devices");
 
             migrationBuilder.DropTable(
@@ -343,6 +396,9 @@ namespace DeviceShop.Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Colours");

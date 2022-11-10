@@ -22,6 +22,8 @@ namespace DeviceShop.Controllers
         }
         public ActionResult Index()
         {
+
+
             List<Device> devices = _context.Devices.ToList();
             return View(devices);
         }

@@ -18,6 +18,8 @@ namespace DeviceShop.Core
         }
 
         public DbSet<Device> Devices { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryModel> CategoriesModel { get; set; }
         public DbSet<Colour> Colours { get; set; }
         public DbSet<Company> Companys { get; set; }
         public DbSet<Guarantee> Guarantees { get; set; }

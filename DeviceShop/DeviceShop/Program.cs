@@ -20,9 +20,13 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequiredLength = 5;
 }).AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<DeviceShopContext>();
+
+
 builder.Services.AddControllersWithViews();
 
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -48,5 +52,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<DeviceShopContext>();
+SeedData.SeedDatabase(context);
 
 app.Run();
