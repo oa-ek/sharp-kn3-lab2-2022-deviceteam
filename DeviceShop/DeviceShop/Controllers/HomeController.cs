@@ -1,17 +1,23 @@
-﻿using DeviceShop.Models;
+﻿using DeviceShop.Core;
+using DeviceShop.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DeviceShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly DeviceShopContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(DeviceShopContext context, IWebHostEnvironment webHostEnvironment)
         {
-            _logger = logger;
-        }
+            _context = context;
+            _webHostEnvironment = webHostEnvironment;
+        } 
+
+  
 
         public IActionResult Index()
         {

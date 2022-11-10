@@ -130,7 +130,19 @@ namespace DeviceShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public ActionResult AddToCart(int id)
+        {
+            var mov = _context.Devices.FirstOrDefault(x => x.DeviceId == id);
+            var currentUser = _context.Users.Include(x => x.Devices).FirstOrDefault(x => x.UserName == User.Identity.Name);
+            if (mov != null && currentUser != null)
+            {
+                currentUser.Devices.Add(mov);
+                _context.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
+        }
 
-      
+
+
     }
 }

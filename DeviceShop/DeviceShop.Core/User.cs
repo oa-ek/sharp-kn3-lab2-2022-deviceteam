@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DeviceShop.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace DeviceShop.Core
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public virtual ICollection<Device>? Devices { get; set; } = new List<Device>();
     }
 }
