@@ -6,6 +6,13 @@
 @{
 }
 
+<form  style="float:right" method="get" asp-action="Index">
+		<p>
+			<input type="search" placeholder="enter query" value="@ViewData["GetDevicesDetails"]" name="deviceSearch" style="width:500px;" />
+			<input type="submit" value="Search" class="btn btn-primary" />
+			<a asp-action="Index">Reset</a>
+		</p>
+	</form>
 <h1>List of Devices</h1>
 <a asp-action="Create"  type="button" class="btn btn-sm btn-outline-secondary">Create</a>
   <div class="album py-5 bg-light">

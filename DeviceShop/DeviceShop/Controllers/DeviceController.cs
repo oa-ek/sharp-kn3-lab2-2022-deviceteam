@@ -90,10 +90,7 @@ namespace DeviceShop.Controllers
 
                 _context.Devices.Add(device);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            
-            
-          
+                return RedirectToAction(nameof(Index));     
         }
 
         [HttpGet]
@@ -140,6 +137,19 @@ namespace DeviceShop.Controllers
                 _context.SaveChanges();
             }
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string deviceSearch)
+        {
+            ViewData["GetDevicesDetails"] = deviceSearch;
+
+            var mquery = from x in _context.Devices select x;
+            if (!String.IsNullOrEmpty(deviceSearch))
+            {
+                mquery = mquery.Where(x => x.Title.Contains(deviceSearch));
+            }
+            return View(await mquery.Include(x => x.Category).ToListAsync());
         }
 
 

@@ -7,8 +7,15 @@
 @if(Model != null)
 {
     @foreach(var item in Model)
-{
-    <p> @item.Title  </p>
-}
+    {
+       <div class="col-3">
+           <div class="card" style="width: 18rem;">
+                 <div class="card-body">
+                       <p> @item.Title  </p>
+                       <a asp-action="Remove" asp-route-id="@item.DeviceId" class="btn btn-warning">Remove from cart</a>
+                 </div>
+           </div>
+       </div>
+    }
 }
 

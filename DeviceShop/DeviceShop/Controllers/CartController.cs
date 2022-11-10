@@ -23,5 +23,13 @@ namespace DeviceShop.Controllers
             }
             return View();
         }
+
+        public ActionResult Remove(int id)
+        {
+            var currentUser = _context.Users.Include(x => x.Devices).FirstOrDefault(x => x.UserName == User.Identity.Name);
+            currentUser?.Devices?.Remove(currentUser.Devices.FirstOrDefault(x => x.DeviceId == id));
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
