@@ -13,6 +13,7 @@
                  <div class="card-body">
                        <p> @item.Title  </p>
                        <a asp-action="Remove" asp-route-id="@item.DeviceId" class="btn btn-warning">Remove from cart</a>
+                       <a asp-action="Continue" asp-route-id="@item.DeviceId" class="btn btn-danger">Continue</a>
                  </div>
            </div>
        </div>
