@@ -11,6 +11,7 @@
     }
 </style>
 
+
 @if(Model != null)
 {
     @foreach(var item in Model)
@@ -20,10 +21,10 @@
                  <div class="card-body">
                        <p id="black"> @item.Title  </p>
                        <a asp-action="Remove" asp-route-id="@item.DeviceId" class="btn btn-warning">Remove from cart</a>
-                       <a asp-action="Continue" asp-route-id="@item.DeviceId" class="btn btn-danger">Continue</a>
                  </div>
            </div>
        </div>
     }
+    <a asp-action="CheckOut" type="button" class="btn btn-dark">Check Out</a>
 }
 

@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DeviceShop.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/slick-theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/slick.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/nouislider.min.css" asp-append-version="true" />
     <style type="text/css">
         .dropdown-menu li {
             position: relative;
@@ -19,9 +24,10 @@
         }
         body
         {
-            background: black;
-            color: white;
+            
+            
         }
+        .color {color: white;!important}
        
     </style>
     
@@ -29,8 +35,9 @@
 
 <body>
 
-   <header> 
-       <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+   <header class="color">  
+
+       <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DeviceShop</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -40,10 +47,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" asp-area="" asp-controller="Home" asp-action="Privacy" data-bs-toggle="dropdown">Privacy</a>
+                            <a class="nav-link dropdown-toggle text-light" asp-area="" asp-controller="Home" asp-action="Privacy" data-bs-toggle="dropdown">Privacy</a>
                             <ul class="dropdown-menu">
                                 <li><a href="" class="dropdown-item">First</a>  
                                     <ul class="dropp-menu submenu">
@@ -58,15 +65,15 @@
                             </ul>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link  text-dark" asp-area="" asp-controller="Device"  asp-action="Index">Device</a>
+                            <a class="nav-link  text-light" asp-area="" asp-controller="Device"  asp-action="Index">Device</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
                         </li>
                         @if(User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
                             </li>
                         }
                     </ul>
@@ -75,20 +82,24 @@
             </div>
         </nav>
    </header>
+
+
+
+    	
         
 
-    <div class="container">
-        <main role="main" class="pb-3">
+  
+    
                     @RenderBody()     
-        </main>
-    </div>
+        
+
 
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - DeviceShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    
+    <script src="https://kit.fontawesome.com/4b8960553e.js" crossorigin="anonymous"></script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

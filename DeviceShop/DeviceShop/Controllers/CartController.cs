@@ -32,5 +32,16 @@ namespace DeviceShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public ActionResult CheckOut()
+        {
+            var currentUser = _context.Users.Include(x => x.Devices).FirstOrDefault(x => x.UserName == User.Identity.Name);
+            if (currentUser != null)
+            {
+                return View(currentUser.Devices.ToList());
+            }
+            return View();
+        }
+
     }
 }
