@@ -18,6 +18,5 @@ namespace DeviceShop.Models
         public Category? Category { get; set; }
         public double Rating { get; set; }
         public virtual ICollection<User>? Users { get; set; } = new List<User>();
-
     }
 }
