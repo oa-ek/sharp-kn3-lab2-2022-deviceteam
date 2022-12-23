@@ -140,14 +140,34 @@ namespace DeviceShop.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(string deviceSearch)
+        public async Task<IActionResult> Index(string deviceSearch, int selectedcategory)
         {
             ViewData["GetDevicesDetails"] = deviceSearch;
 
+            var currentUser = _context.Users.Include(x => x.Devices).FirstOrDefault(x => x.UserName == User.Identity.Name);
+            if (currentUser != null)
+            {
+                ViewBag.CartList =currentUser.Devices.ToList();
+            }
+
+            ViewBag.Categories = _context.Categories.ToList();
             var mquery = from x in _context.Devices select x;
             if (!String.IsNullOrEmpty(deviceSearch))
             {
                 mquery = mquery.Where(x => x.Title.Contains(deviceSearch));
+            }
+            try
+            {
+                if(selectedcategory > 0)
+                {
+                    var findCategory = _context.Categories.FirstOrDefault(x => x.Id == selectedcategory).Name;
+                    mquery = mquery.Where(x => x.Category.Name.Contains(findCategory));
+                }
+               
+            }
+            catch
+            {
+
             }
             return View(await mquery.Include(x => x.Category).ToListAsync());
         }
